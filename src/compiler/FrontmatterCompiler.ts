@@ -1,4 +1,4 @@
-import { FrontMatterCache, MetadataCache, getLinkpath } from "obsidian";
+import { FrontMatterCache, MetadataCache } from "obsidian";
 import {
 	getGardenPathForNote,
 	sanitizePermalink,
@@ -24,6 +24,8 @@ export type TFrontmatter = Record<string, unknown> & {
 	tags?: string;
 	category?: string;
 	score?: number;
+	updated?: Date;
+	published?: Date;
 };
 
 export type TPublishedFrontMatter = Record<string, unknown> & {
@@ -34,6 +36,8 @@ export type TPublishedFrontMatter = Record<string, unknown> & {
 	hide?: boolean;
 	category?: string;
 	score?: number;
+	updated?: Date;
+	published?: Date;
 };
 
 export class FrontmatterCompiler {
@@ -186,30 +190,42 @@ export class FrontmatterCompiler {
 				publishedFrontMatter["score"] = baseFrontMatter["score"];
 			}
 
-			// Banner: resolve wiki link and normalize path, then assign to 'image'
-			if (baseFrontMatter["banner"]) {
-				const rawBanner = baseFrontMatter["banner"] as string;
-				const wikiImgRegex = /!\[\[(.*?)\]\]/;
-				const match = rawBanner.match(wikiImgRegex);
-				let bannerPath = match ? match[1] : rawBanner;
-
-				// If it's a wiki link, try to resolve the actual file path
-				if (match) {
-					const linkedFile = this.metadataCache.getFirstLinkpathDest(
-						getLinkpath(bannerPath),
-						file.getPath(),
-					);
-
-					if (linkedFile) {
-						bannerPath = linkedFile.path;
-					}
-				}
-
-				// Replace spaces with hyphens
-				bannerPath = bannerPath.replace(/\s+/g, "-");
-				// Use forward slashes
-				publishedFrontMatter["image"] = bannerPath.replace(/\\/g, "/");
+			// Handle published and updated timestamps
+			if (baseFrontMatter["published"] !== undefined) {
+				publishedFrontMatter["published"] = new Date(
+					baseFrontMatter["published"],
+				);
 			}
+
+			if (baseFrontMatter["updated"] !== undefined) {
+				publishedFrontMatter["updated"] = new Date(
+					baseFrontMatter["updated"],
+				);
+			}
+
+			//TODO: Add Auto Banner
+
+			// // Banner: resolve wiki link and normalize path, then assign to 'image'
+			// if (baseFrontMatter["banner"]) {
+			// 	const rawBanner = baseFrontMatter["banner"] as string;
+			// 	const wikiImgRegex = /!\[\[(.*?)\]\]/;
+			// 	const match = rawBanner.match(wikiImgRegex);
+			// 	let bannerPath = match ? match[1] : rawBanner;
+
+			// 	// If it's a wiki link, try to resolve the actual file path
+			// 	if (match) {
+			// 		const linkedFile = this.metadataCache.getFirstLinkpathDest(
+			// 			getLinkpath(bannerPath),
+			// 			file.getPath(),
+			// 		);
+
+			// 		if (linkedFile) {
+			// 			bannerPath = linkedFile.path;
+			// 			bannerPath = bannerPath.replace(/\s+/g, "-");
+			// 			publishedFrontMatter["image"] = bannerPath.replace(/\\/g, "/");
+			// 		}
+			// 	}
+			// }
 		}
 
 		return publishedFrontMatter;
@@ -285,7 +301,7 @@ export class FrontmatterCompiler {
 					const created = DateTime.fromMillis(
 						file.file.stat.ctime,
 					).toFormat(timestampFormat);
-					newFrontMatter[createdKey] = created;
+					newFrontMatter[createdKey] = new Date(created);
 				}
 			}
 
@@ -297,7 +313,7 @@ export class FrontmatterCompiler {
 					const updated = DateTime.fromMillis(
 						file.file.stat.mtime,
 					).toFormat(timestampFormat);
-					newFrontMatter[updatedKey] = updated;
+					newFrontMatter[updatedKey] = new Date(updated);
 				}
 			}
 

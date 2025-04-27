@@ -1,5 +1,4 @@
 import { Base64 } from "js-base64";
-import slugify from "@sindresorhus/slugify";
 import sha1 from "crypto-js/sha1";
 import { PathRewriteRules } from "../repositoryConnection/DigitalGardenSiteManager";
 
@@ -40,7 +39,7 @@ function generateUrlPath(filePath: string, slugifyPath = true): string {
 	return (
 		extensionLessPath
 			.split("/")
-			.map((x) => slugify(x))
+			.map((x) => x.replace(/ /g, "-"))
 			.join("/") + "/"
 	);
 }

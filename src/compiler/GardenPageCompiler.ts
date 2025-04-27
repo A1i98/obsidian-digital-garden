@@ -751,7 +751,10 @@ export class GardenPageCompiler {
 						const image = await this.vault.readBinary(linkedFile);
 						const imageBase64 = arrayBufferToBase64(image);
 
-						const cmsImgPath = linkedFile.path;
+						const cmsImgPath = linkedFile.path
+							.split("/")
+							.map((part) => part.replace(/ /g, "-"))
+							.join("/");
 						let name = "";
 
 						if (metaData && size) {
@@ -764,9 +767,11 @@ export class GardenPageCompiler {
 							name = imageName;
 						}
 
-						const imageMarkdown = `![${name}](${encodeURI(
-							cmsImgPath,
-						)})`;
+						// const imageMarkdown = `![${name}](${encodeURI(
+						// 	cmsImgPath,
+						// )})`;
+
+						const imageMarkdown = `![${name}](${cmsImgPath})`;
 
 						assets.push({ path: cmsImgPath, content: imageBase64 });
 
@@ -827,7 +832,12 @@ export class GardenPageCompiler {
 						}
 						const image = await this.vault.readBinary(linkedFile);
 						const imageBase64 = arrayBufferToBase64(image);
-						const cmsImgPath = `${linkedFile.path}`;
+
+						//DOTO: Fix it
+						const cmsImgPath = `${linkedFile.path
+							.split("/")
+							.map((part) => part.replace(/ /g, "-"))
+							.join("/")}`;
 						const imageMarkdown = `![${imageName}](${cmsImgPath})`;
 						assets.push({ path: cmsImgPath, content: imageBase64 });
 
