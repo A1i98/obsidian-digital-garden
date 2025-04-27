@@ -1,5 +1,5 @@
 ---
-dg-publish: false
+blog-publish: false
 ---
 How deep can you go? 
 

@@ -1,5 +1,5 @@
 ---
-dg-publish: true
+blog-publish: true
 ---
 ```dataviewjs
 dv.header(2, 'Header 2');

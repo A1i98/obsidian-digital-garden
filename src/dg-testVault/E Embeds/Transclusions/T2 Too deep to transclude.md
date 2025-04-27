@@ -1,5 +1,5 @@
 ---
-dg-publish: true
+blog-publish: true
 ---
 This one isn't isn't transcluded anymore (too deep)
 

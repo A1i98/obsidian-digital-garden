@@ -1,5 +1,5 @@
 ---
-dg-publish: true
+blog-publish: true
 ---
 Link with whitespace after link part: 
 [[Empty file | hehe this one breaks for real]]

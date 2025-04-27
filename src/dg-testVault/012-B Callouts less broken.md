@@ -1,5 +1,5 @@
 ---
-dg-publish: true
+blog-publish: true
 ---
 
 > [!info]

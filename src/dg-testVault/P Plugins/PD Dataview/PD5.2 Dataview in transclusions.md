@@ -1,5 +1,5 @@
 ---
-dg-publish: true
+blog-publish: true
 ---
 Transcluding the Dataview-containing [[PD5.1 Dataview in transclusions]] file below:
 ![[PD5.1 Dataview in transclusions]]

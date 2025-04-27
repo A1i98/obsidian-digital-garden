@@ -1,5 +1,5 @@
 ---
-dg-publish: true
+blog-publish: true
 ---
 These codeblocks should not be modified upon publish.
 

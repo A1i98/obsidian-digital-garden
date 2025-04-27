@@ -6,7 +6,7 @@ A Assets/travolta.png
 0 QA hell/Break links + transclusions.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/0-qa-hell/break-links-transclusions/"}
+{"blog-publish":true,"permalink":"/0-qa-hell/break-links-transclusions/"}
 ---
 
 Link with whitespace after link part: 
@@ -89,7 +89,7 @@ This should be in this header block
 000 Home.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/000-home/","tags":["gardenEntry"]}
+{"blog-publish":true,"permalink":"/000-home/","tags":["gardenEntry"]}
 ---
 
 ## Welcome
@@ -125,7 +125,7 @@ This garden should have the following plugins
 001 Links.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/001-links/"}
+{"blog-publish":true,"permalink":"/001-links/"}
 ---
 
 [[002 Hidden page\|002 Hidden page]]
@@ -141,7 +141,7 @@ This garden should have the following plugins
 002 Hidden page.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/002-hidden-page/","hide":true}
+{"blog-publish":true,"permalink":"/002-hidden-page/","hide":true}
 ---
 
 This page is hidden from the folder tree!
@@ -149,7 +149,7 @@ This page is hidden from the folder tree!
 004 Publishing this garden.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/004-publishing-this-garden/"}
+{"blog-publish":true,"permalink":"/004-publishing-this-garden/"}
 ---
 
 To use this test garden, add a test garden token / username / repo to `.env` (see README.md)
@@ -160,7 +160,7 @@ To use this test garden, add a test garden token / username / repo to `.env` (se
 005 Custom filters.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/005-custom-filters/"}
+{"blog-publish":true,"permalink":"/005-custom-filters/"}
 ---
 
 
@@ -174,7 +174,7 @@ this plugin has custom filter that turns 🌞 (snow emoji) into 🌞 (THE SUN). 
 006 Custom title.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/006-custom-title/","title":"006 THIS IS A CUSTOM TITLE"}
+{"blog-publish":true,"permalink":"/006-custom-title/","title":"006 THIS IS A CUSTOM TITLE"}
 ---
 
 [Custom title](https://dg-docs.ole.dev/advanced/note-specific-settings/)
@@ -183,7 +183,7 @@ this plugin has custom filter that turns 🌞 (snow emoji) into 🌞 (THE SUN). 
 007 Custom permalink.md
 ==========
 ---
-{"dg-publish":true,"dg-permalink":"my-name-is-permalink/custom-permalink","permalink":"/my-name-is-permalink/custom-permalink/"}
+{"blog-publish":true,"dg-permalink":"my-name-is-permalink/custom-permalink","permalink":"/my-name-is-permalink/custom-permalink/"}
 ---
 
 [Custom permalink](https://dg-docs.ole.dev/advanced/note-specific-settings/)
@@ -193,7 +193,7 @@ this plugin has custom filter that turns 🌞 (snow emoji) into 🌞 (THE SUN). 
 008 Pinned note.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/008-pinned-note/","pinned":true}
+{"blog-publish":true,"permalink":"/008-pinned-note/","pinned":true}
 ---
 
 Hello! I'm a pinned note (should be at the top yeah!)
@@ -201,7 +201,7 @@ Hello! I'm a pinned note (should be at the top yeah!)
 009 Comments.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/009-comments/"}
+{"blog-publish":true,"permalink":"/009-comments/"}
 ---
 
 This is the only content on this page
@@ -211,7 +211,7 @@ This is the only content on this page
 010 custom createdAt.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/010-custom-created-at/","created":"2020-01-01"}
+{"blog-publish":true,"permalink":"/010-custom-created-at/","created":"2020-01-01"}
 ---
 
 This file should have createdAt: 2020-01-01
@@ -219,7 +219,7 @@ This file should have createdAt: 2020-01-01
 011 Custom updatedAt.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/011-custom-updated-at/","updated":"2021-01-01"}
+{"blog-publish":true,"permalink":"/011-custom-updated-at/","updated":"2021-01-01"}
 ---
 
 This file should have updatedAt: 2021-01-01
@@ -228,7 +228,7 @@ This file should have updatedAt: 2021-01-01
 012 Callouts.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/012-callouts/"}
+{"blog-publish":true,"permalink":"/012-callouts/"}
 ---
 
 #known-issue 
@@ -282,7 +282,7 @@ this is just text i guess
 012-B Callouts less broken.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/012-b-callouts-less-broken/"}
+{"blog-publish":true,"permalink":"/012-b-callouts-less-broken/"}
 ---
 
 
@@ -331,7 +331,7 @@ this is just text i guess
 013 Custom path.md
 ==========
 ---
-{"dg-publish":true,"dg-path":"custom path/should also write to permalink","permalink":"/custom-path/should-also-write-to-permalink/"}
+{"blog-publish":true,"dg-path":"custom path/should also write to permalink","permalink":"/custom-path/should-also-write-to-permalink/"}
 ---
 
 
@@ -339,7 +339,7 @@ this is just text i guess
 014 Customer path and permalink.md
 ==========
 ---
-{"dg-publish":true,"dg-path":"custom path/should not overwrite permalink","dg-permalink":"custom link/shouldBeDifferentToPath","permalink":"/custom link/shouldBeDifferentToPath/"}
+{"blog-publish":true,"dg-path":"custom path/should not overwrite permalink","dg-permalink":"custom link/shouldBeDifferentToPath","permalink":"/custom link/shouldBeDifferentToPath/"}
 ---
 
 
@@ -347,7 +347,7 @@ this is just text i guess
 015 Code blocks.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/015-code-blocks/"}
+{"blog-publish":true,"permalink":"/015-code-blocks/"}
 ---
 
 These codeblocks should not be modified upon publish.
@@ -396,7 +396,7 @@ And for sanity, here's some block references outside of code blocks: foobar
 E Embeds/E02 PNG published.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/e-embeds/e02-png-published/"}
+{"blog-publish":true,"permalink":"/e-embeds/e02-png-published/"}
 ---
 
 
@@ -407,7 +407,7 @@ E Embeds/E02 PNG published.md
 E Embeds/E04 PNG reuse.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/e-embeds/e04-png-reuse/"}
+{"blog-publish":true,"permalink":"/e-embeds/e04-png-reuse/"}
 ---
 
 This file uses the same image as in [[E Embeds/E03 PNG_not_published\|E03 PNG_not_published]]. When removing the other one, the image should not be removed. 
@@ -419,7 +419,7 @@ This file uses the same image as in [[E Embeds/E03 PNG_not_published\|E03 PNG_no
 E Embeds/E05 WEBP published.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/e-embeds/e05-webp-published/"}
+{"blog-publish":true,"permalink":"/e-embeds/e05-webp-published/"}
 ---
 
 
@@ -431,7 +431,7 @@ E Embeds/E05 WEBP published.md
 E Embeds/E07 Image with alt attributes.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/e-embeds/e07-image-with-alt-attributes/"}
+{"blog-publish":true,"permalink":"/e-embeds/e07-image-with-alt-attributes/"}
 ---
 
 This should render to a 200 px wide image with the alt text "center"
@@ -449,7 +449,7 @@ This should render to an image with the alt text "left", like so:
 E Embeds/Transclusions/T1 BaseFile.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/e-embeds/transclusions/t1-base-file/"}
+{"blog-publish":true,"permalink":"/e-embeds/transclusions/t1-base-file/"}
 ---
 
 
@@ -533,7 +533,7 @@ Bonus pic:
 E Embeds/Transclusions/T2 Too deep to transclude.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/e-embeds/transclusions/t2-too-deep-to-transclude/"}
+{"blog-publish":true,"permalink":"/e-embeds/transclusions/t2-too-deep-to-transclude/"}
 ---
 
 This one isn't isn't transcluded anymore (too deep)
@@ -546,7 +546,7 @@ This one isn't isn't transcluded anymore (too deep)
 E Embeds/Transclusions/T3 Transcluded block.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/e-embeds/transclusions/t3-transcluded-block/"}
+{"blog-publish":true,"permalink":"/e-embeds/transclusions/t3-transcluded-block/"}
 ---
 
 
@@ -569,7 +569,7 @@ cheese
 E Embeds/Transclusions/T4 Transcluded header.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/e-embeds/transclusions/t4-transcluded-header/"}
+{"blog-publish":true,"permalink":"/e-embeds/transclusions/t4-transcluded-header/"}
 ---
 
 
@@ -595,7 +595,7 @@ This should be in this header block
 E Embeds/Transclusions/T5 transclude custom filters.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/e-embeds/transclusions/t5-transclude-custom-filters/"}
+{"blog-publish":true,"permalink":"/e-embeds/transclusions/t5-transclude-custom-filters/"}
 ---
 
 
@@ -622,7 +622,7 @@ this plugin has custom filter that turns 🌞 (snow emoji) into 🌞 (THE SUN). 
 E Embeds/Transclusions/T6 transclusion inside codeblock.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/e-embeds/transclusions/t6-transclusion-inside-codeblock/"}
+{"blog-publish":true,"permalink":"/e-embeds/transclusions/t6-transclusion-inside-codeblock/"}
 ---
 
 #known-issue [Issue](https://github.com/oleeskild/obsidian-digital-garden/issues/113)
@@ -671,7 +671,7 @@ this plugin has custom filter that turns 🌞 (snow emoji) into 🌞 (THE SUN). 
 L Languages/Transclude Headers.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/l-languages/transclude-headers/"}
+{"blog-publish":true,"permalink":"/l-languages/transclude-headers/"}
 ---
 
 
@@ -696,7 +696,7 @@ This should be visible when transcluding the header above
 L Links/01 Link to header.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/l-links/01-link-to-header/"}
+{"blog-publish":true,"permalink":"/l-links/01-link-to-header/"}
 ---
 
 Link to header should keep header link info
@@ -721,7 +721,7 @@ Body under header
 P Plugins/PD Dataview/PD1 Dataview.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/p-plugins/pd-dataview/pd-1-dataview/"}
+{"blog-publish":true,"permalink":"/p-plugins/pd-dataview/pd-1-dataview/"}
 ---
 
 I'm a list of all files in this folder: 
@@ -745,7 +745,7 @@ I'm a list of all files in this folder:
 P Plugins/PD Dataview/PD2 Inline queries.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/p-plugins/pd-dataview/pd-2-inline-queries/"}
+{"blog-publish":true,"permalink":"/p-plugins/pd-dataview/pd-2-inline-queries/"}
 ---
 
 
@@ -761,7 +761,7 @@ this note is about foo
 P Plugins/PD Dataview/PD3 Inline JS queries.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/p-plugins/pd-dataview/pd-3-inline-js-queries/"}
+{"blog-publish":true,"permalink":"/p-plugins/pd-dataview/pd-3-inline-js-queries/"}
 ---
 
 
@@ -776,7 +776,7 @@ P Plugins/PD Dataview/PD3 Inline JS queries.md
 P Plugins/PD Dataview/PD4 DataviewJs queries.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/p-plugins/pd-dataview/pd-4-dataview-js-queries/"}
+{"blog-publish":true,"permalink":"/p-plugins/pd-dataview/pd-4-dataview-js-queries/"}
 ---
 
 <h2><span>Header 2</span></h2><p><span>PD4 DataviewJs queries</span></p>
@@ -791,7 +791,7 @@ P Plugins/PD Dataview/PD4 DataviewJs queries.md
 P Plugins/PD Dataview/PD5.1 Dataview in transclusions.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/p-plugins/pd-dataview/pd-5-1-dataview-in-transclusions/"}
+{"blog-publish":true,"permalink":"/p-plugins/pd-dataview/pd-5-1-dataview-in-transclusions/"}
 ---
 
 This should say "bar" ->  bar
@@ -806,7 +806,7 @@ See if those tran: [[P Plugins/PD Dataview/PD5.2 Dataview in transclusions\|PD5.
 P Plugins/PD Dataview/PD5.2 Dataview in transclusions.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/p-plugins/pd-dataview/pd-5-2-dataview-in-transclusions/"}
+{"blog-publish":true,"permalink":"/p-plugins/pd-dataview/pd-5-2-dataview-in-transclusions/"}
 ---
 
 Transcluding the Dataview-containing [[P Plugins/PD Dataview/PD5.1 Dataview in transclusions\|PD5.1 Dataview in transclusions]] file below:
@@ -833,7 +833,7 @@ The transcluded, Dataview-containing transclusion above should have been process
 P Plugins/PE Excalidraw/PE1 Transcluded excalidraw.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/p-plugins/pe-excalidraw/pe-1-transcluded-excalidraw/"}
+{"blog-publish":true,"permalink":"/p-plugins/pe-excalidraw/pe-1-transcluded-excalidraw/"}
 ---
 
 
@@ -845,7 +845,7 @@ P Plugins/PE Excalidraw/PE1 Transcluded excalidraw.md
 P Plugins/PE Excalidraw/PE2 excalidraw with image.md
 ==========
 ---
-{"dg-publish":true,"permalink":"/p-plugins/pe-excalidraw/pe-2-excalidraw-with-image/"}
+{"blog-publish":true,"permalink":"/p-plugins/pe-excalidraw/pe-2-excalidraw-with-image/"}
 ---
 
 #known-issue 
@@ -861,7 +861,7 @@ P Plugins/PE Excalidraw/PE2 excalidraw with image.md
 Path Rewriting/004 Folder set to root.md
 ==========
 ---
-{"dg-publish":true,"dg-path":"004 Folder set to root.md","permalink":"/004-folder-set-to-root/"}
+{"blog-publish":true,"dg-path":"004 Folder set to root.md","permalink":"/004-folder-set-to-root/"}
 ---
 
 This folder is set in path rewrite settings as 
@@ -879,7 +879,7 @@ This subfolder also contains path rewrite testing!
 Path Rewriting/Subfolder/How deep do the rewrite rules go.md
 ==========
 ---
-{"dg-publish":true,"dg-path":"Subfolder/How deep do the rewrite rules go.md","permalink":"/subfolder/how-deep-do-the-rewrite-rules-go/"}
+{"blog-publish":true,"dg-path":"Subfolder/How deep do the rewrite rules go.md","permalink":"/subfolder/how-deep-do-the-rewrite-rules-go/"}
 ---
 
 With the rewrite rules: 
@@ -900,7 +900,7 @@ It should be in Subfolder as "matching exits on first hit"
 Path Rewriting/Subfolder2/More specific path rewriting.md
 ==========
 ---
-{"dg-publish":true,"dg-path":"fun-folder/More specific path rewriting.md","permalink":"/fun-folder/more-specific-path-rewriting/"}
+{"blog-publish":true,"dg-path":"fun-folder/More specific path rewriting.md","permalink":"/fun-folder/more-specific-path-rewriting/"}
 ---
 
 This Subfolder has been rewritten before the rule to rewrite the Path Rewriting folder to root

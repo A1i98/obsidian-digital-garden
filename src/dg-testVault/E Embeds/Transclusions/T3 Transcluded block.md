@@ -1,5 +1,5 @@
 ---
-dg-publish: true
+blog-publish: true
 ---
 
 Below it should just say "cheese": 

@@ -1,5 +1,5 @@
 ---
-dg-publish: true
+blog-publish: true
 ---
 #known-issue [Issue](https://github.com/oleeskild/obsidian-digital-garden/issues/113)
 

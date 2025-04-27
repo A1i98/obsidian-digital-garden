@@ -1,6 +1,6 @@
 ---
 dg-home: true
-dg-publish: true
+blog-publish: true
 ---
 ## Welcome
 

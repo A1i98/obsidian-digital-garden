@@ -1,7 +1,7 @@
 ---
 foo: bar
 url: https://kagi.com
-dg-publish: true
+blog-publish: true
 ---
 This should say "bar" ->  `=this.foo`
 

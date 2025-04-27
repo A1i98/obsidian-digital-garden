@@ -43,7 +43,7 @@ export class FrontmatterCompiler {
 		delete fileFrontMatter["position"];
 
 		let publishedFrontMatter: TPublishedFrontMatter = {
-			"dg-publish": true,
+			"blog-publish": true,
 		};
 
 		publishedFrontMatter = this.addPermalink(
@@ -84,9 +84,10 @@ export class FrontmatterCompiler {
 			? { ...fileFrontMatter, ...publishedFrontMatter }
 			: publishedFrontMatter;
 
-		const frontMatterString = JSON.stringify(fullFrontMatter);
+		// const frontMatterString = JSON.stringify(fullFrontMatter);
 
-		return `---\n${frontMatterString}\n---\n`;
+		// return `---\n${frontMatterString}\n---\n`;
+		return `---\n${fullFrontMatter}\n---\n`;
 	}
 
 	private addPermalink(

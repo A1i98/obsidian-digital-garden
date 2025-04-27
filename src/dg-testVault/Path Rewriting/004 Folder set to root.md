@@ -1,5 +1,5 @@
 ---
-dg-publish: true
+blog-publish: true
 ---
 This folder is set in path rewrite settings as 
 
