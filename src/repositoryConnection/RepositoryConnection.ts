@@ -5,8 +5,8 @@ import { CompiledPublishFile } from "src/publishFile/PublishFile";
 const logger = Logger.get("repository-connection");
 const oktokitLogger = Logger.get("octokit");
 
-const IMAGE_PATH_BASE = "src/site/";
-const NOTE_PATH_BASE = "src/site/notes/";
+const IMAGE_PATH_BASE = "src/content/posts/";
+const NOTE_PATH_BASE = "src/content/posts/";
 
 interface IOctokitterInput {
 	githubToken: string;

@@ -1,4 +1,4 @@
-import { FrontMatterCache } from "obsidian";
+import { FrontMatterCache, MetadataCache, getLinkpath } from "obsidian";
 import {
 	getGardenPathForNote,
 	sanitizePermalink,
@@ -9,6 +9,9 @@ import {
 import DigitalGardenSettings from "../models/settings";
 import { PathRewriteRules } from "../repositoryConnection/DigitalGardenSiteManager";
 import { PublishFile } from "../publishFile/PublishFile";
+import * as path from "path";
+import { DateTime } from "luxon";
+import * as yaml from "js-yaml";
 
 export type TFrontmatter = Record<string, unknown> & {
 	"dg-path"?: string;
@@ -19,6 +22,8 @@ export type TFrontmatter = Record<string, unknown> & {
 	"dg-pinned"?: boolean;
 	"dg-metatags"?: string;
 	tags?: string;
+	category?: string;
+	score?: number;
 };
 
 export type TPublishedFrontMatter = Record<string, unknown> & {
@@ -27,15 +32,19 @@ export type TPublishedFrontMatter = Record<string, unknown> & {
 	pinned?: boolean;
 	permalink?: string;
 	hide?: boolean;
+	category?: string;
+	score?: number;
 };
 
 export class FrontmatterCompiler {
 	private readonly settings: DigitalGardenSettings;
 	private readonly rewriteRules: PathRewriteRules;
+	private readonly metadataCache: MetadataCache;
 
-	constructor(settings: DigitalGardenSettings) {
+	constructor(settings: DigitalGardenSettings, metadataCache: MetadataCache) {
 		this.settings = settings;
 		this.rewriteRules = getRewriteRules(settings.pathRewriteRules);
+		this.metadataCache = metadataCache;
 	}
 
 	compile(file: PublishFile, frontmatter: FrontMatterCache): string {
@@ -53,6 +62,7 @@ export class FrontmatterCompiler {
 		);
 
 		publishedFrontMatter = this.addDefaultPassThrough(
+			file,
 			fileFrontMatter,
 			publishedFrontMatter,
 		);
@@ -84,10 +94,14 @@ export class FrontmatterCompiler {
 			? { ...fileFrontMatter, ...publishedFrontMatter }
 			: publishedFrontMatter;
 
-		// const frontMatterString = JSON.stringify(fullFrontMatter);
+		// Convert the frontmatter object to YAML format
+		const frontMatterString = yaml.dump(fullFrontMatter, {
+			indent: 2,
+			quotingType: '"',
+			lineWidth: -1, // Prevent line wrapping
+		});
 
-		// return `---\n${frontMatterString}\n---\n`;
-		return `---\n${fullFrontMatter}\n---\n`;
+		return `---\n${frontMatterString}---\n`;
 	}
 
 	private addPermalink(
@@ -122,6 +136,7 @@ export class FrontmatterCompiler {
 	}
 
 	private addDefaultPassThrough(
+		file: PublishFile,
 		baseFrontMatter: TFrontmatter,
 		newFrontMatter: TPublishedFrontMatter,
 	) {
@@ -131,6 +146,10 @@ export class FrontmatterCompiler {
 		if (baseFrontMatter) {
 			if (baseFrontMatter["title"]) {
 				publishedFrontMatter["title"] = baseFrontMatter["title"];
+			} else {
+				// Add default title from file name if not present
+				const fileName = path.basename(file.getPath());
+				publishedFrontMatter["title"] = fileName.replace(/\.md$/, "");
 			}
 
 			if (baseFrontMatter["dg-metatags"]) {
@@ -149,6 +168,47 @@ export class FrontmatterCompiler {
 
 			if (baseFrontMatter["dg-pinned"]) {
 				publishedFrontMatter["pinned"] = baseFrontMatter["dg-pinned"];
+			}
+
+			// Handle category - use folder name if not specified in frontmatter
+			if (baseFrontMatter["category"]) {
+				publishedFrontMatter["category"] = baseFrontMatter["category"];
+			} else {
+				const folderPath = file.getPath().split("/");
+
+				if (folderPath.length > 1) {
+					publishedFrontMatter["category"] = folderPath[0];
+				}
+			}
+
+			// Handle score if present in frontmatter
+			if (baseFrontMatter["score"] !== undefined) {
+				publishedFrontMatter["score"] = baseFrontMatter["score"];
+			}
+
+			// Banner: resolve wiki link and normalize path, then assign to 'image'
+			if (baseFrontMatter["banner"]) {
+				const rawBanner = baseFrontMatter["banner"] as string;
+				const wikiImgRegex = /!\[\[(.*?)\]\]/;
+				const match = rawBanner.match(wikiImgRegex);
+				let bannerPath = match ? match[1] : rawBanner;
+
+				// If it's a wiki link, try to resolve the actual file path
+				if (match) {
+					const linkedFile = this.metadataCache.getFirstLinkpathDest(
+						getLinkpath(bannerPath),
+						file.getPath(),
+					);
+
+					if (linkedFile) {
+						bannerPath = linkedFile.path;
+					}
+				}
+
+				// Replace spaces with hyphens
+				bannerPath = bannerPath.replace(/\s+/g, "-");
+				// Use forward slashes
+				publishedFrontMatter["image"] = bannerPath.replace(/\\/g, "/");
 			}
 		}
 
@@ -209,19 +269,36 @@ export class FrontmatterCompiler {
 	 */
 	private addTimestampsFrontmatter =
 		(file: PublishFile) => (newFrontMatter: TPublishedFrontMatter) => {
-			//If all note icon settings are disabled, don't change the frontmatter, so that people won't see all their notes as changed in the publication center
-			const { showCreatedTimestamp, showUpdatedTimestamp } =
-				this.settings;
+			const {
+				showCreatedTimestamp,
+				showUpdatedTimestamp,
+				createdTimestampKey,
+				updatedTimestampKey,
+				timestampFormat,
+			} = this.settings;
 
-			const updatedAt = file.meta.getUpdatedAt();
-			const createdAt = file.meta.getCreatedAt();
+			// Created timestamp
+			if (showCreatedTimestamp) {
+				const createdKey = createdTimestampKey;
 
-			if (createdAt && showCreatedTimestamp) {
-				newFrontMatter["created"] = createdAt;
+				if (!file.frontmatter[createdKey]) {
+					const created = DateTime.fromMillis(
+						file.file.stat.ctime,
+					).toFormat(timestampFormat);
+					newFrontMatter[createdKey] = created;
+				}
 			}
 
-			if (updatedAt && showUpdatedTimestamp) {
-				newFrontMatter["updated"] = updatedAt;
+			// Updated timestamp
+			if (showUpdatedTimestamp) {
+				const updatedKey = updatedTimestampKey;
+
+				if (!file.frontmatter[updatedKey]) {
+					const updated = DateTime.fromMillis(
+						file.file.stat.mtime,
+					).toFormat(timestampFormat);
+					newFrontMatter[updatedKey] = updated;
+				}
 			}
 
 			return newFrontMatter;

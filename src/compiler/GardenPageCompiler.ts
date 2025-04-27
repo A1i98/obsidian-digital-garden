@@ -234,10 +234,11 @@ export class GardenPageCompiler {
 							headerSplit.length > 1 ? `#${headerSplit[1]}` : "";
 					}
 					const fullLinkedFilePath = getLinkpath(linkedFileName);
-					
+
 					if (fullLinkedFilePath === "") {
 						continue;
 					}
+
 					const linkedFile = this.metadataCache.getFirstLinkpathDest(
 						fullLinkedFilePath,
 						file.getPath(),
@@ -246,7 +247,7 @@ export class GardenPageCompiler {
 					if (!linkedFile) {
 						convertedText = convertedText.replace(
 							linkMatch,
-							`[[${linkedFileName}${headerPath}\\|${linkDisplayName}]]`,
+							`[[${linkedFileName}${headerPath}|${linkDisplayName}]]`,
 						);
 						continue;
 					}
@@ -259,7 +260,7 @@ export class GardenPageCompiler {
 
 						convertedText = convertedText.replace(
 							linkMatch,
-							`[[${extensionlessPath}${headerPath}\\|${linkDisplayName}]]`,
+							`[[${extensionlessPath}${headerPath}|${linkDisplayName}]]`,
 						);
 					}
 				} catch (e) {
@@ -300,10 +301,11 @@ export class GardenPageCompiler {
 
 					const transclusionFilePath =
 						getLinkpath(transclusionFileName);
-					
+
 					if (transclusionFilePath === "") {
 						continue;
 					}
+
 					const linkedFile = this.metadataCache.getFirstLinkpathDest(
 						transclusionFilePath,
 						file.getPath(),
@@ -512,10 +514,11 @@ export class GardenPageCompiler {
 						.substring(svg.indexOf("[") + 2, svg.indexOf("]"))
 						.split("|");
 					const imagePath = getLinkpath(imageName);
-					
+
 					if (imagePath === "") {
 						continue;
 					}
+
 					const linkedFile = this.metadataCache.getFirstLinkpathDest(
 						imagePath,
 						file.getPath(),
@@ -563,6 +566,7 @@ export class GardenPageCompiler {
 					if (imagePath === "") {
 						continue;
 					}
+
 					const linkedFile = this.metadataCache.getFirstLinkpathDest(
 						imagePath,
 						file.getPath(),
@@ -612,6 +616,7 @@ export class GardenPageCompiler {
 					if (imagePath === "") {
 						continue;
 					}
+
 					const linkedFile = this.metadataCache.getFirstLinkpathDest(
 						imagePath,
 						file.getPath(),
@@ -650,6 +655,7 @@ export class GardenPageCompiler {
 					if (decodedImagePath === "") {
 						continue;
 					}
+
 					const linkedFile = this.metadataCache.getFirstLinkpathDest(
 						decodedImagePath,
 						file.getPath(),
@@ -732,6 +738,7 @@ export class GardenPageCompiler {
 						if (imagePath === "") {
 							continue;
 						}
+
 						const linkedFile =
 							this.metadataCache.getFirstLinkpathDest(
 								imagePath,
@@ -744,7 +751,7 @@ export class GardenPageCompiler {
 						const image = await this.vault.readBinary(linkedFile);
 						const imageBase64 = arrayBufferToBase64(image);
 
-						const cmsImgPath = `/img/user/${linkedFile.path}`;
+						const cmsImgPath = linkedFile.path;
 						let name = "";
 
 						if (metaData && size) {
@@ -808,6 +815,7 @@ export class GardenPageCompiler {
 						if (decodedImagePath === "") {
 							continue;
 						}
+
 						const linkedFile =
 							this.metadataCache.getFirstLinkpathDest(
 								decodedImagePath,
@@ -819,7 +827,7 @@ export class GardenPageCompiler {
 						}
 						const image = await this.vault.readBinary(linkedFile);
 						const imageBase64 = arrayBufferToBase64(image);
-						const cmsImgPath = `/img/user/${linkedFile.path}`;
+						const cmsImgPath = `${linkedFile.path}`;
 						const imageMarkdown = `![${imageName}](${cmsImgPath})`;
 						assets.push({ path: cmsImgPath, content: imageBase64 });
 

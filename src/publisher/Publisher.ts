@@ -222,7 +222,7 @@ export default class Publisher {
 	}
 
 	private async uploadImage(filePath: string, content: string, sha?: string) {
-		const path = `src/site${filePath}`;
+		const path = `${IMAGE_PATH_BASE}${filePath}`;
 		await this.uploadToGithub(path, content, sha);
 	}
 

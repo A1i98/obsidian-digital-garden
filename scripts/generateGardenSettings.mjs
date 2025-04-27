@@ -29,10 +29,10 @@ const gardenSettings = {
 	showNoteIconOnInternalLink: false,
 	showNoteIconOnBackLink: false,
 	showCreatedTimestamp: true,
-	createdTimestampKey: "customCreated",
+	createdTimestampKey: "published",
 	showUpdatedTimestamp: true,
-	updatedTimestampKey: "customUpdated",
-	timestampFormat: "MMM dd, yyyy h:mm a",
+	updatedTimestampKey: "updated",
+	timestampFormat: "yyyy-MM-dd",
 	styleSettingsCss: "",
 	styleSettingsBodyClasses: "",
 	pathRewriteRules: `
