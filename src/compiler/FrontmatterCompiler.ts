@@ -203,6 +203,10 @@ export class FrontmatterCompiler {
 				);
 			}
 
+			if (baseFrontMatter["blog-publish"] !== undefined) {
+				publishedFrontMatter["draft"] = baseFrontMatter["blog-publish"];
+			}
+
 			//TODO: Add Auto Banner
 
 			// // Banner: resolve wiki link and normalize path, then assign to 'image'
