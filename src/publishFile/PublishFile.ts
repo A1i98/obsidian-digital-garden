@@ -104,7 +104,10 @@ export class PublishFile {
 
 	getPath = () => this.file.path;
 	getCompiledFrontmatter() {
-		const frontmatterCompiler = new FrontmatterCompiler(this.settings);
+		const frontmatterCompiler = new FrontmatterCompiler(
+			this.settings,
+			this.metadataCache,
+		);
 
 		const metadata =
 			this.metadataCache.getCache(this.file.path)?.frontmatter ?? {};

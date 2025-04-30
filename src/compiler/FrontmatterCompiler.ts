@@ -1,4 +1,4 @@
-import { FrontMatterCache, MetadataCache } from "obsidian";
+import { FrontMatterCache, getLinkpath, MetadataCache } from "obsidian";
 import {
 	getGardenPathForNote,
 	sanitizePermalink,
@@ -209,27 +209,39 @@ export class FrontmatterCompiler {
 
 			//TODO: Add Auto Banner
 
-			// // Banner: resolve wiki link and normalize path, then assign to 'image'
-			// if (baseFrontMatter["banner"]) {
-			// 	const rawBanner = baseFrontMatter["banner"] as string;
-			// 	const wikiImgRegex = /!\[\[(.*?)\]\]/;
-			// 	const match = rawBanner.match(wikiImgRegex);
-			// 	let bannerPath = match ? match[1] : rawBanner;
+			// Banner: resolve wiki link and normalize path, then assign to 'image'
+			if (baseFrontMatter["banner"]) {
+				const rawBanner = baseFrontMatter["banner"] as string;
+				const wikiImgRegex = /!\[\[(.*?)\]\]/;
+				const match = rawBanner.match(wikiImgRegex);
+				const bannerPath = match ? match[1] : rawBanner;
 
-			// 	// If it's a wiki link, try to resolve the actual file path
-			// 	if (match) {
-			// 		const linkedFile = this.metadataCache.getFirstLinkpathDest(
-			// 			getLinkpath(bannerPath),
-			// 			file.getPath(),
-			// 		);
+				const normalizePath = (p: string) =>
+					p.replace(/\\/g, "/").replace(/\s+/g, "-");
 
-			// 		if (linkedFile) {
-			// 			bannerPath = linkedFile.path;
-			// 			bannerPath = bannerPath.replace(/\s+/g, "-");
-			// 			publishedFrontMatter["image"] = bannerPath.replace(/\\/g, "/");
-			// 		}
-			// 	}
-			// }
+				if (match) {
+					const linkedFile = this.metadataCache.getFirstLinkpathDest(
+						getLinkpath(bannerPath),
+						file.getPath(),
+					);
+
+					if (linkedFile) {
+						const noteDir = path.dirname(file.getPath());
+
+						const relativePath = path.relative(
+							noteDir,
+							linkedFile.path,
+						);
+
+						publishedFrontMatter["image"] =
+							normalizePath(relativePath);
+					}
+				} else {
+					const noteDir = path.dirname(file.getPath());
+					const relativePath = path.relative(noteDir, bannerPath);
+					publishedFrontMatter["image"] = normalizePath(relativePath);
+				}
+			}
 		}
 
 		return publishedFrontMatter;
