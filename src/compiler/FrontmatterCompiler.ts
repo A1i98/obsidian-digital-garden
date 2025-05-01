@@ -204,7 +204,8 @@ export class FrontmatterCompiler {
 			}
 
 			if (baseFrontMatter["blog-publish"] !== undefined) {
-				publishedFrontMatter["draft"] = baseFrontMatter["blog-publish"];
+				publishedFrontMatter["draft"] =
+					!baseFrontMatter["blog-publish"];
 			}
 
 			//TODO: Add Auto Banner
