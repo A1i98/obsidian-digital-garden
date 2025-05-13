@@ -151,23 +151,24 @@ export class GardenPageCompiler {
 	removeObsidianComments: TCompilerStep = () => (text) => {
 		const obsidianCommentsRegex = /%%.+?%%/gms;
 		const obsidianCommentsMatches = text.match(obsidianCommentsRegex);
-
+	
 		const codeBlocks = text.match(CODEBLOCK_REGEX) || [];
 		const codeFences = text.match(CODE_FENCE_REGEX) || [];
 		const excalidraw = text.match(EXCALIDRAW_REGEX) || [];
 		const matchesToSkip = [...codeBlocks, ...codeFences, ...excalidraw];
-
+	
 		if (!obsidianCommentsMatches) return text;
-
+	
 		for (const commentMatch of obsidianCommentsMatches) {
-			//If comment is in a code block, code fence, or excalidrawing, leave it in
+			// If comment is in a code block, code fence, or excalidrawing, leave it in
 			if (matchesToSkip.findIndex((x) => x.contains(commentMatch)) > -1) {
 				continue;
 			}
-
-			text = text.replace(commentMatch, "");
+			
+			const hiddenCallout = `:::hidden\n:::`;
+			text = text.replace(commentMatch, hiddenCallout);
 		}
-
+	
 		return text;
 	};
 
